@@ -11,7 +11,8 @@
     border-radius: 20px;
     color: #FFFFFF;
     font-family: Arial;
-    box-shadow: 4px 4px 4px #3D3E42
+    box-shadow: 4px 4px 4px #3D3E42;
+    position: fixed;
     
   }
   
@@ -43,6 +44,7 @@
     line-height: 60px;
     user-select: none;
     font-size: 1.5rem;
+    position: absolute;
   }
   
   .btn:hover {

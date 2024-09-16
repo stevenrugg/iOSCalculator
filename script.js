@@ -5,6 +5,7 @@ const display = document.getElementById('calcDisplay');
 let currentValue = '0';
 let previousValue = '';
 let operator = '';
+let resetNext = false; // Flag to reset input after "="
 
 // Add event listeners to each button
 document.querySelectorAll('.btn').forEach((button) => {
@@ -27,14 +28,20 @@ function handleButtonPress(buttonText) {
 
 // Handle number or decimal input
 function handleNumber(number) {
-  if (currentValue === '0') {
+  if (resetNext) {
+    // If resetNext is true, start a fresh calculation
     currentValue = number;
+    resetNext = false;
   } else {
-    currentValue += number;
+    // Append the number or decimal point
+    if (currentValue === '0') {
+      currentValue = number;
+    } else {
+      currentValue += number;
+    }
   }
 }
 
-// Handle operator input
 // Handle operator input
 function handleOperator(operatorText) {
   switch (operatorText) {
@@ -43,6 +50,7 @@ function handleOperator(operatorText) {
       currentValue = '0';
       previousValue = '';
       operator = '';
+      resetNext = false;
       break;
     case '+/-':
       // Toggle the sign of the current value
@@ -53,16 +61,14 @@ function handleOperator(operatorText) {
       currentValue = (parseFloat(currentValue) / 100).toString();
       break;
     case '=':
-      // Perform calculation and reset
+      // Perform calculation and prepare to reset for the next input
       try {
         if (operator) {
           previousValue = performCalculation();
           currentValue = previousValue;
           operator = '';
+          resetNext = true; // Set reset flag so next input starts a new calculation
         }
-        // After calculation, reset as if "ac" was pressed
-        previousValue = '';
-        operator = '';
       } catch (error) {
         currentValue = 'Error';
       }
@@ -72,7 +78,7 @@ function handleOperator(operatorText) {
     case '/':
     case 'x':
       // Perform calculation first if an operator already exists
-      if (operator) {
+      if (operator && !resetNext) {
         previousValue = performCalculation();
         currentValue = previousValue;
       }
@@ -80,6 +86,7 @@ function handleOperator(operatorText) {
       operator = operatorText === 'x' ? '*' : operatorText; // Replace 'x' with '*'
       previousValue = currentValue;
       currentValue = '';
+      resetNext = false; // Don't reset after operator press
       break;
   }
 }
@@ -108,9 +115,7 @@ function performCalculation() {
     default:
       return currentValue;
   }
-
-  displayValue = result.toString();
-  return display.context = displayValue
+  return result.toString();
 }
 
 // Function to update the display

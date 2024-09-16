@@ -44,9 +44,10 @@ function handleButtonPress(buttonText) {
         currentValue = 'Error';
       }
       break;
+    
     case '+':
     case '-':
-    case 'x':
+    case 'x'.replace(/x/g, "*"):
     case '/':
       // Append the operator to the current value
       currentValue += buttonText;

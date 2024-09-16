@@ -16,7 +16,9 @@
     user-select: none;
     line-height: 10px;
     font-size: 60px;
-  
+    height: max-content;
+    width: min-content;
+
   }
   
   .buttons {

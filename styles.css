@@ -21,9 +21,6 @@
 
 }
 
-p {
-  place-self: inherit;
-}
 
 .buttons {
   display: grid;
@@ -34,13 +31,20 @@ p {
 }
 .btn {
   width: 60px;
-  height: 60px;
+  height: 60px; 
   background-color:#3D3E42;
   border-radius: 50%;
   text-align: center;
   line-height: 60px;
   user-select: none;
   font-size: 1.5rem;
+  box-sizing: border-box;
+}
+
+
+.btn span {
+  display: inline-block;
+  min-width: 1.5rem; 
 }
 
 .btn:hover {

@@ -5,7 +5,6 @@ const display = document.getElementById('calcDisplay');
 let currentValue = '0';
 let previousValue = '';
 let operator = '';
-let resetNext = false; // Flag to reset input after "="
 
 // Add event listeners to each button
 document.querySelectorAll('.btn').forEach((button) => {
@@ -28,17 +27,10 @@ function handleButtonPress(buttonText) {
 
 // Handle number or decimal input
 function handleNumber(number) {
-  if (resetNext) {
-    // If resetNext is true, start a fresh calculation
+  if (currentValue === '0') {
     currentValue = number;
-    resetNext = false;
   } else {
-    // Append the number or decimal point
-    if (currentValue === '0') {
-      currentValue = number;
-    } else {
-      currentValue += number;
-    }
+    currentValue += number;
   }
 }
 
@@ -50,7 +42,6 @@ function handleOperator(operatorText) {
       currentValue = '0';
       previousValue = '';
       operator = '';
-      resetNext = false;
       break;
     case '+/-':
       // Toggle the sign of the current value
@@ -61,13 +52,12 @@ function handleOperator(operatorText) {
       currentValue = (parseFloat(currentValue) / 100).toString();
       break;
     case '=':
-      // Perform calculation and prepare to reset for the next input
+      // Perform calculation
       try {
         if (operator) {
           previousValue = performCalculation();
           currentValue = previousValue;
           operator = '';
-          resetNext = true; // Set reset flag so next input starts a new calculation
         }
       } catch (error) {
         currentValue = 'Error';
@@ -77,16 +67,15 @@ function handleOperator(operatorText) {
     case '-':
     case '/':
     case 'x':
-      // Perform calculation first if an operator already exists
-      if (operator && !resetNext) {
+      // If there's already an operator, perform the current calculation first
+      if (operator) {
         previousValue = performCalculation();
         currentValue = previousValue;
       }
-      // Set operator and prepare for next number
+      // Set the operator and save the current value
       operator = operatorText === 'x' ? '*' : operatorText; // Replace 'x' with '*'
       previousValue = currentValue;
       currentValue = '';
-      resetNext = false; // Don't reset after operator press
       break;
   }
 }

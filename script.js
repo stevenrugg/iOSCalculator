@@ -35,6 +35,7 @@ function handleNumber(number) {
 }
 
 // Handle operator input
+// Handle operator input
 function handleOperator(operatorText) {
   switch (operatorText) {
     case 'ac':
@@ -52,13 +53,16 @@ function handleOperator(operatorText) {
       currentValue = (parseFloat(currentValue) / 100).toString();
       break;
     case '=':
-      // Perform calculation
+      // Perform calculation and reset
       try {
         if (operator) {
           previousValue = performCalculation();
           currentValue = previousValue;
           operator = '';
         }
+        // After calculation, reset as if "ac" was pressed
+        previousValue = '';
+        operator = '';
       } catch (error) {
         currentValue = 'Error';
       }
@@ -67,12 +71,12 @@ function handleOperator(operatorText) {
     case '-':
     case '/':
     case 'x':
-      // If there's already an operator, perform the current calculation first
+      // Perform calculation first if an operator already exists
       if (operator) {
         previousValue = performCalculation();
         currentValue = previousValue;
       }
-      // Set the operator and save the current value
+      // Set operator and prepare for next number
       operator = operatorText === 'x' ? '*' : operatorText; // Replace 'x' with '*'
       previousValue = currentValue;
       currentValue = '';
@@ -104,10 +108,12 @@ function performCalculation() {
     default:
       return currentValue;
   }
-  return result.toString();
+
+  displayValue = result.toString();
+  return display.context = displayValue
 }
 
 // Function to update the display
 function updateDisplay() {
-  return display.textContent = currentValue;
+  display.textContent = currentValue;
 }

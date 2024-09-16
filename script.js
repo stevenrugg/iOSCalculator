@@ -1,58 +1,11 @@
-/*const zeroBtn = document.getElementById('zeroBtn');
-const oneBtn = document.getElementById('oneBtn');
-const twoBtn = document.getElementById('twoBtn');
-const threeBtn = document.getElementById('threeBtn');
-const fourBtn = document.getElementById('fourBtn');
-const fiveBtn = document.getElementById('fiveBtn');
-const sixBtn = document.getElementById('sixBtn');
-const sevenBtn = document.getElementById('sevenBtn');
-const eightBtn = document.getElementById('eightBtn');
-const nineBtn = document.getElementById('nineBtn');
-const plusBtn = document.getElementById('plusBtn');
-const equalsBtn = document.getElementById('equalsBtn');
-const minusBtn = document.getElementById('minusBtn');
-const divisionBtn = document.getElementById('divisionBtn');
-const multiplyBtn = document.getElementById('multiplyBtn');
-const dotBtn = document.getElementById('dotBtn');
-const percentBtn = document.getElementById('dotBtn');
-const plusMinusBtn = document.getElementById('plusMinusBtn');
-const acBtn = document.getElementById('acBtn');
-const calcDisplay = document.getElementById('calcDisplay');
+{
+"Author": "Steven Rugg",
+"Description": "iOS Calculator replica using only CSS3, HTML5 and vanilla javascript. It's amazing the things a little imagination can create!",
+"Liscense": "MIT",
+"URL": "http://github.com/stevenrugg/iOSCalculator"
+"Warning": "** This software is free to use, distribute, alter, change or upgrade for free as long as its use is NON COMMERCIAL. Please leave the attribution and this comment. **WARNING! WARNING! WARNING! This software uses eval(). DO NOT run it in a production environmnent! It is not secure. WARNING! WARNING! WARNING!"
+}
 
-const screen = document.getElementById('calcDisplay');
-
-let operatorPlus = "+"
-let operatorMinus = "-"
-let operatorMultiply = "*"
-let operatorDivision = "/"
-let operatorPercent = "%"
-let operatorDot = "."
-let operatorPlusMinus = "+/-"
-let currentNumber = ""
-let previousNumber = ""
-let currentOperator = ""
-let previousOperator = ""
-let decimal = false
-let plusMinus = false
-let result = 0
-let previousResult = 0
-// writing a calculator application with the numbers zero through nine as buttons and the output is appended to a 
-// <p></p> node in html
-// the buttons are assigned to variables and the event listeners are added to each button
-zeroBtn.addEventListener('click', function(){
-    currentNumber += "0"
-    calcDisplay.textContent = currentNumber
-});
-    
-oneBtn.addEventListener('click', function(){
-    currentNumber += "1"
-    calcDisplay.textContent = currentNumber
-});
-
-twoBtn.addEventListener('click', function() {
-    currentNumber += "2"
-    calcDisplay.textContent = currentNumber
-});*/
 
 // Get the display element
 const display = document.getElementById('calcDisplay');

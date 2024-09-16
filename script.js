@@ -109,5 +109,5 @@ function performCalculation() {
 
 // Function to update the display
 function updateDisplay() {
-  display.textContent = currentValue;
+  return display.textContent = currentValue;
 }

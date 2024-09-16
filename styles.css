@@ -49,11 +49,25 @@
   }
   
   .bg-orange {
-    background-color: #F37D0D
+    background-color: #F37D0D;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 60px;
+    user-select: none;
+    font-size: 1.5rem;
   }
   
   .bg-grey {
-    background-color: #B4B0AC
+    background-color: #B4B0AC;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 60px;
+    user-select: none;
+    font-size: 1.5rem;
   }
   
   .zero {

@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 .calculator {
     margin: 50px auto;
     padding: 18px;
@@ -16,8 +20,8 @@
     user-select: none;
     line-height: 10px;
     font-size: 60px;
-    
-
+    width: 60px;
+    height: 60px;
   }
   
   .buttons {
@@ -41,11 +45,15 @@
   }
   
   .btn:hover {
-    filter: brightness(120%)
+    filter: brightness(120%);
+    width: 60px;
+    height: 60px;
   }
   
   .btn:active {
-    filter: brightness(50%)
+    filter: brightness(50%);
+    width: 60px;
+    height: 60px;
   }
   
   .bg-orange {

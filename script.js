@@ -1,10 +1,10 @@
-{
+/*
 "Author": "Steven Rugg",
 "Description": "iOS Calculator replica using only CSS3, HTML5 and vanilla javascript. It's amazing the things a little imagination can create!",
 "Liscense": "MIT",
 "URL": "http://github.com/stevenrugg/iOSCalculator"
 "Warning": "** This software is free to use, distribute, alter, change or upgrade for free as long as its use is NON COMMERCIAL. Please leave the attribution and this comment. **WARNING! WARNING! WARNING! This software uses eval(). DO NOT run it in a production environmnent! It is not secure. WARNING! WARNING! WARNING!"
-}
+*/
 
 
 // Get the display element

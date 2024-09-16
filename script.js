@@ -1,12 +1,3 @@
-/*
-"Author": "Steven Rugg",
-"Description": "iOS Calculator replica using only CSS3, HTML5 and vanilla javascript. It's amazing the things a little imagination can create!",
-"Liscense": "MIT",
-"URL": "http://github.com/stevenrugg/iOSCalculator"
-"Warning": "** This software is free to use, distribute, alter, change or upgrade for free as long as its use is NON COMMERCIAL. Please leave the attribution and this comment. **WARNING! WARNING! WARNING! This software uses eval(). DO NOT run it in a production environmnent! It is not secure. WARNING! WARNING! WARNING!"
-*/
-
-
 // Get the display element
 const display = document.getElementById('calcDisplay');
 
@@ -30,16 +21,18 @@ function handleButtonPress(buttonText) {
       break;
     case '+/-':
       // Toggle the sign of the current value
-      currentValue = currentValue * -1;
+      currentValue = (parseFloat(currentValue) * -1).toString();
       break;
     case '%':
       // Calculate the percentage of the current value
-      currentValue = currentValue / 100;
+      currentValue = (parseFloat(currentValue) / 100).toString();
       break;
     case '=':
       // Evaluate the expression and display the result
       try {
-        currentValue = eval(currentValue);
+        // Replace 'x' with '*' before evaluating
+        currentValue = currentValue.replace(/x/g, '*');
+        currentValue = eval(currentValue).toString();
       } catch (error) {
         currentValue = 'Error';
       }
@@ -47,13 +40,18 @@ function handleButtonPress(buttonText) {
     
     case '+':
     case '-':
-    case 'x'.replace(/x/g, "*"):
     case '/':
       // Append the operator to the current value
       currentValue += buttonText;
       break;
+
+    case 'x':
+      // Append the '*' instead of 'x' for multiplication
+      currentValue += '*';
+      break;
+
     default:
-      // Append the digit to the current value
+      // Append the digit or decimal point to the current value
       if (currentValue === '0') {
         currentValue = buttonText;
       } else {

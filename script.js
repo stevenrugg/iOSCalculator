@@ -1,10 +1,64 @@
+/*const zeroBtn = document.getElementById('zeroBtn');
+const oneBtn = document.getElementById('oneBtn');
+const twoBtn = document.getElementById('twoBtn');
+const threeBtn = document.getElementById('threeBtn');
+const fourBtn = document.getElementById('fourBtn');
+const fiveBtn = document.getElementById('fiveBtn');
+const sixBtn = document.getElementById('sixBtn');
+const sevenBtn = document.getElementById('sevenBtn');
+const eightBtn = document.getElementById('eightBtn');
+const nineBtn = document.getElementById('nineBtn');
+const plusBtn = document.getElementById('plusBtn');
+const equalsBtn = document.getElementById('equalsBtn');
+const minusBtn = document.getElementById('minusBtn');
+const divisionBtn = document.getElementById('divisionBtn');
+const multiplyBtn = document.getElementById('multiplyBtn');
+const dotBtn = document.getElementById('dotBtn');
+const percentBtn = document.getElementById('dotBtn');
+const plusMinusBtn = document.getElementById('plusMinusBtn');
+const acBtn = document.getElementById('acBtn');
+const calcDisplay = document.getElementById('calcDisplay');
+
+const screen = document.getElementById('calcDisplay');
+
+let operatorPlus = "+"
+let operatorMinus = "-"
+let operatorMultiply = "*"
+let operatorDivision = "/"
+let operatorPercent = "%"
+let operatorDot = "."
+let operatorPlusMinus = "+/-"
+let currentNumber = ""
+let previousNumber = ""
+let currentOperator = ""
+let previousOperator = ""
+let decimal = false
+let plusMinus = false
+let result = 0
+let previousResult = 0
+// writing a calculator application with the numbers zero through nine as buttons and the output is appended to a 
+// <p></p> node in html
+// the buttons are assigned to variables and the event listeners are added to each button
+zeroBtn.addEventListener('click', function(){
+    currentNumber += "0"
+    calcDisplay.textContent = currentNumber
+});
+    
+oneBtn.addEventListener('click', function(){
+    currentNumber += "1"
+    calcDisplay.textContent = currentNumber
+});
+
+twoBtn.addEventListener('click', function() {
+    currentNumber += "2"
+    calcDisplay.textContent = currentNumber
+});*/
+
 // Get the display element
 const display = document.getElementById('calcDisplay');
 
 // Initialize the display value
 let currentValue = '0';
-let previousValue = '';
-let operator = '';
 
 // Add event listeners to each button
 document.querySelectorAll('.btn').forEach((button) => {
@@ -16,95 +70,43 @@ document.querySelectorAll('.btn').forEach((button) => {
 
 // Function to handle button presses
 function handleButtonPress(buttonText) {
-  // Check if buttonText is a number or a decimal point
-  if (!isNaN(buttonText) || buttonText === '.') {
-    handleNumber(buttonText);
-  } else {
-    handleOperator(buttonText);
-  }
-  updateDisplay();
-}
-
-// Handle number or decimal input
-function handleNumber(number) {
-  if (currentValue === '0') {
-    currentValue = number;
-  } else {
-    currentValue += number;
-  }
-}
-
-// Handle operator input
-function handleOperator(operatorText) {
-  switch (operatorText) {
+  switch (buttonText) {
     case 'ac':
-      // Clear everything
+      // Clear the display
       currentValue = '0';
-      previousValue = '';
-      operator = '';
       break;
     case '+/-':
       // Toggle the sign of the current value
-      currentValue = (parseFloat(currentValue) * -1).toString();
+      currentValue = currentValue * -1;
       break;
     case '%':
-      // Convert the current value to a percentage
-      currentValue = (parseFloat(currentValue) / 100).toString();
+      // Calculate the percentage of the current value
+      currentValue = currentValue / 100;
       break;
     case '=':
-      // Perform calculation
+      // Evaluate the expression and display the result
       try {
-        if (operator) {
-          previousValue = performCalculation();
-          currentValue = previousValue;
-          operator = '';
-        }
+        currentValue = eval(currentValue);
       } catch (error) {
         currentValue = 'Error';
       }
       break;
     case '+':
     case '-':
-    case '/':
     case 'x':
-      // If there's already an operator, perform the current calculation first
-      if (operator) {
-        previousValue = performCalculation();
-        currentValue = previousValue;
-      }
-      // Set the operator and save the current value
-      operator = operatorText === 'x' ? '*' : operatorText; // Replace 'x' with '*'
-      previousValue = currentValue;
-      currentValue = '';
-      break;
-  }
-}
-
-// Perform the calculation
-function performCalculation() {
-  let result;
-  const prev = parseFloat(previousValue);
-  const current = parseFloat(currentValue);
-
-  if (isNaN(prev) || isNaN(current)) return 'Error';
-
-  switch (operator) {
-    case '+':
-      result = prev + current;
-      break;
-    case '-':
-      result = prev - current;
-      break;
-    case '*':
-      result = prev * current;
-      break;
     case '/':
-      result = current !== 0 ? prev / current : 'Error'; // Handle division by zero
+      // Append the operator to the current value
+      currentValue += buttonText;
       break;
     default:
-      return currentValue;
+      // Append the digit to the current value
+      if (currentValue === '0') {
+        currentValue = buttonText;
+      } else {
+        currentValue += buttonText;
+      }
   }
-  return result.toString();
+  updateDisplay();
 }
 
 // Function to update the display

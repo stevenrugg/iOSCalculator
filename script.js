@@ -93,7 +93,7 @@ function handleButtonPress(buttonText) {
       break;
     case '+':
     case '-':
-    case 'x':
+    case '*':
     case '/':
       // Append the operator to the current value
       currentValue += buttonText;
